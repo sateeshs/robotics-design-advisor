@@ -1,0 +1,119 @@
+{
+  "competition": "FTC",
+  "season": "2025-2026",
+  "game_name": "DECODE",
+  "field": {
+    "dimensions_mm": [3657.6, 3657.6],
+    "notes": "Standard FTC 12'×12' field with elevated goals and ramps"
+  },
+  "game_elements": [
+    {
+      "name": "artifact",
+      "type": "scoring_object",
+      "dimensions_mm": [76.0, 76.0, 76.0],
+      "weight_grams": 50,
+      "material": "foam",
+      "color_variants": ["purple", "green"],
+      "quantity_on_field": 44,
+      "notes": "~3 inch cubes, light enough for flywheel shooting"
+    }
+  ],
+  "scoring_zones": [
+    {
+      "name": "low_goal",
+      "type": "basket",
+      "position": "alliance_side",
+      "height_mm": 457,
+      "opening_mm": [305, 305],
+      "points_per_element": 2,
+      "autonomous_multiplier": 2,
+      "notes": "Easiest target, wide opening"
+    },
+    {
+      "name": "high_goal",
+      "type": "basket",
+      "position": "alliance_side",
+      "height_mm": 914,
+      "opening_mm": [254, 254],
+      "points_per_element": 4,
+      "autonomous_multiplier": 2,
+      "notes": "Higher points, requires accurate shooter or elevator"
+    },
+    {
+      "name": "motif_ramp",
+      "type": "zone",
+      "position": "shared",
+      "height_mm": 0,
+      "opening_mm": [610, 305],
+      "points_per_element": 6,
+      "autonomous_multiplier": 1,
+      "notes": "Place artifacts in pattern on ramp for bonus points"
+    },
+    {
+      "name": "gate",
+      "type": "mechanism",
+      "position": "field_center",
+      "height_mm": 305,
+      "opening_mm": [610, 25],
+      "points_per_element": 0,
+      "autonomous_multiplier": 1,
+      "notes": "Operate gate to access partner's artifacts"
+    }
+  ],
+  "mechanisms_needed": {
+    "intake": {
+      "element_to_collect": "artifact",
+      "collection_method": "roller/claw",
+      "notes": "Must handle 76mm cubes, both colors"
+    },
+    "scorer": {
+      "delivery_method": "shoot/place",
+      "target_distance_mm": 1500,
+      "accuracy_requirement": "medium",
+      "notes": "Dual flywheel for shooting or elevator for placing"
+    },
+    "endgame": {
+      "task": "park",
+      "points": 10,
+      "notes": "Park in designated zone"
+    }
+  },
+  "design_axes": {
+    "drivetrain": ["mecanum", "differential", "swerve", "H-drive"],
+    "intake": [
+      "front_roller",
+      "dual_side_intake",
+      "over_body_intake",
+      "claw_gripper"
+    ],
+    "indexer": [
+      "belt_conveyor",
+      "wheel_indexer",
+      "carousel",
+      "direct_feed"
+    ],
+    "scorer": [
+      "dual_flywheel",
+      "single_flywheel_with_hood",
+      "catapult",
+      "elevator_placer"
+    ],
+    "aiming": [
+      "turret",
+      "pivot_hood",
+      "whole_robot_aim",
+      "fixed_angle_variable_speed",
+      "adjustable_hood"
+    ],
+    "endgame": [
+      "simple_park",
+      "fast_park",
+      "shared_zone_park"
+    ]
+  },
+  "cycle_targets": {
+    "top_team_cycles": 20,
+    "average_team_cycles": 10,
+    "cycle_time_seconds": 7
+  }
+}

@@ -1,0 +1,54 @@
+{
+  "sku": "5202-0002-0019",
+  "name": "Yellow Jacket 19.2:1 Motor",
+  "category": "motion/motor",
+  "source_file": "motors/5202-0002-0019.step",
+  "schema_version": 1,
+  "geometry": {
+    "bounding_box": {"x": 37, "y": 37, "z": 102, "unit": "mm"},
+    "volume_cm3": 85.2,
+    "mass_grams": 230,
+    "center_of_mass": [18.5, 18.5, 51]
+  },
+  "mounting_faces": [
+    {
+      "face_id": "face_front",
+      "normal": [0, 0, 1],
+      "area_mm2": 1369,
+      "center": [18.5, 18.5, 102],
+      "face_type": "planar",
+      "has_holes": true,
+      "hole_pattern_ref": "pattern_0"
+    }
+  ],
+  "hole_patterns": [
+    {
+      "pattern_id": "pattern_0",
+      "face_ref": "face_front",
+      "hole_diameter_mm": 4.2,
+      "hole_type": "through",
+      "pitch_x_mm": 33,
+      "pitch_y_mm": 33,
+      "grid": [2, 2],
+      "bolt_size": "M4",
+      "count": 4
+    }
+  ],
+  "connection_points": [
+    {
+      "connection_type": "motor_mount_pattern",
+      "compatible_with": ["yellow_jacket_mount", "M4_bolt"],
+      "face_ref": "face_front",
+      "pattern_ref": "pattern_0"
+    },
+    {
+      "connection_type": "shaft_bore",
+      "compatible_with": ["6mm_D_shaft"],
+      "diameter_mm": 6,
+      "profile": "D_shaft",
+      "location": [18.5, 18.5, 102]
+    }
+  ],
+  "compatible_with": ["yellow_jacket_mount", "M4_bolt", "6mm_D_shaft"],
+  "can_mate_with": ["brackets", "plates", "channel"]
+}

@@ -1,0 +1,139 @@
+{
+  "family": "goBILDA Yellow Jacket 5202 Series",
+  "base_motor": "RS-555",
+  "voltage_nominal": 12.0,
+  "variants": [
+    {
+      "sku": "5202-0002-0001",
+      "name": "Yellow Jacket 1:1 (6000 RPM)",
+      "gear_ratio": 1.0,
+      "free_speed_rpm": 6000,
+      "stall_torque_kg_cm": 1.27,
+      "stall_current_a": 9.2,
+      "free_current_a": 0.25,
+      "encoder_ppr": 28.0,
+      "shaft_type": "6mm_D",
+      "weight_grams": 200
+    },
+    {
+      "sku": "5202-0002-0004",
+      "name": "Yellow Jacket 3.7:1 (1620 RPM)",
+      "gear_ratio": 3.7,
+      "free_speed_rpm": 1620,
+      "stall_torque_kg_cm": 4.7,
+      "stall_current_a": 9.2,
+      "free_current_a": 0.25,
+      "encoder_ppr": 103.8,
+      "shaft_type": "6mm_D",
+      "weight_grams": 310
+    },
+    {
+      "sku": "5202-0002-0005",
+      "name": "Yellow Jacket 5.2:1 (1150 RPM)",
+      "gear_ratio": 5.2,
+      "free_speed_rpm": 1150,
+      "stall_torque_kg_cm": 6.6,
+      "stall_current_a": 9.2,
+      "free_current_a": 0.25,
+      "encoder_ppr": 145.1,
+      "shaft_type": "6mm_D",
+      "weight_grams": 310
+    },
+    {
+      "sku": "5202-0002-0014",
+      "name": "Yellow Jacket 13.7:1 (435 RPM)",
+      "gear_ratio": 13.7,
+      "free_speed_rpm": 435,
+      "stall_torque_kg_cm": 17.4,
+      "stall_current_a": 9.2,
+      "free_current_a": 0.25,
+      "encoder_ppr": 384.5,
+      "shaft_type": "6mm_D",
+      "weight_grams": 370
+    },
+    {
+      "sku": "5202-0002-0019",
+      "name": "Yellow Jacket 19.2:1 (312 RPM)",
+      "gear_ratio": 19.2,
+      "free_speed_rpm": 312,
+      "stall_torque_kg_cm": 24.3,
+      "stall_current_a": 9.2,
+      "free_current_a": 0.25,
+      "encoder_ppr": 537.7,
+      "shaft_type": "6mm_D",
+      "weight_grams": 420
+    },
+    {
+      "sku": "5202-0002-0027",
+      "name": "Yellow Jacket 26.9:1 (223 RPM)",
+      "gear_ratio": 26.9,
+      "free_speed_rpm": 223,
+      "stall_torque_kg_cm": 34.1,
+      "stall_current_a": 9.2,
+      "free_current_a": 0.25,
+      "encoder_ppr": 753.2,
+      "shaft_type": "6mm_D",
+      "weight_grams": 420
+    },
+    {
+      "sku": "5202-0002-0051",
+      "name": "Yellow Jacket 50.9:1 (117 RPM)",
+      "gear_ratio": 50.9,
+      "free_speed_rpm": 117,
+      "stall_torque_kg_cm": 64.5,
+      "stall_current_a": 9.2,
+      "free_current_a": 0.25,
+      "encoder_ppr": 1425.1,
+      "shaft_type": "6mm_D",
+      "weight_grams": 470
+    },
+    {
+      "sku": "5202-0002-0071",
+      "name": "Yellow Jacket 71.2:1 (84 RPM)",
+      "gear_ratio": 71.2,
+      "free_speed_rpm": 84,
+      "stall_torque_kg_cm": 90.2,
+      "stall_current_a": 9.2,
+      "free_current_a": 0.25,
+      "encoder_ppr": 1993.6,
+      "shaft_type": "6mm_D",
+      "weight_grams": 470
+    },
+    {
+      "sku": "5202-0002-0100",
+      "name": "Yellow Jacket 99.5:1 (60 RPM)",
+      "gear_ratio": 99.5,
+      "free_speed_rpm": 60,
+      "stall_torque_kg_cm": 126.1,
+      "stall_current_a": 9.2,
+      "free_current_a": 0.25,
+      "encoder_ppr": 2786.2,
+      "shaft_type": "6mm_D",
+      "weight_grams": 520
+    },
+    {
+      "sku": "5202-0002-0139",
+      "name": "Yellow Jacket 139:1 (43 RPM)",
+      "gear_ratio": 139.0,
+      "free_speed_rpm": 43,
+      "stall_torque_kg_cm": 176.2,
+      "stall_current_a": 9.2,
+      "free_current_a": 0.25,
+      "encoder_ppr": 3895.9,
+      "shaft_type": "6mm_D",
+      "weight_grams": 520
+    },
+    {
+      "sku": "5202-0002-0188",
+      "name": "Yellow Jacket 188:1 (30 RPM)",
+      "gear_ratio": 188.0,
+      "free_speed_rpm": 30,
+      "stall_torque_kg_cm": 238.1,
+      "stall_current_a": 9.2,
+      "free_current_a": 0.25,
+      "encoder_ppr": 5281.1,
+      "shaft_type": "6mm_D",
+      "weight_grams": 570
+    }
+  ]
+}
