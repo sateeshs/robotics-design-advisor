@@ -1,0 +1,54 @@
+{
+  "sku": "2900-0005-0002",
+  "name": "96mm Mecanum Wheel (Right)",
+  "category": "motion/wheel",
+  "source_file": "wheels/2900-0005-0002.step",
+  "schema_version": 1,
+  "geometry": {
+    "bounding_box": {"x": 96, "y": 96, "z": 50, "unit": "mm"},
+    "volume_cm3": 180.5,
+    "mass_grams": 145,
+    "center_of_mass": [48, 48, 25]
+  },
+  "mounting_faces": [
+    {
+      "face_id": "face_hub",
+      "normal": [0, 0, -1],
+      "area_mm2": 1256,
+      "center": [48, 48, 0],
+      "face_type": "planar",
+      "has_holes": true,
+      "hole_pattern_ref": "pattern_0"
+    }
+  ],
+  "hole_patterns": [
+    {
+      "pattern_id": "pattern_0",
+      "face_ref": "face_hub",
+      "hole_diameter_mm": 4.2,
+      "hole_type": "through",
+      "pitch_x_mm": 16,
+      "pitch_y_mm": 16,
+      "grid": [2, 2],
+      "bolt_size": "M4",
+      "count": 4
+    }
+  ],
+  "connection_points": [
+    {
+      "connection_type": "shaft_bore",
+      "compatible_with": ["REX_8mm_shaft"],
+      "diameter_mm": 8,
+      "profile": "D_bore",
+      "location": [48, 48, 0]
+    },
+    {
+      "connection_type": "bolt_hole_grid",
+      "compatible_with": ["M4_bolt"],
+      "face_ref": "face_hub",
+      "pattern_ref": "pattern_0"
+    }
+  ],
+  "compatible_with": ["REX_8mm_shaft", "M4_bolt"],
+  "can_mate_with": ["shafting", "hubs"]
+}
