@@ -1,0 +1,65 @@
+{
+  "$schema": "Season knowledge template — copy and fill for each new season",
+  "competition": "FTC",
+  "season": "YYYY-YYYY",
+  "game_name": "GAME NAME",
+  "field": {
+    "dimensions_mm": [3657.6, 3657.6],
+    "notes": "Standard FTC 12'×12' field"
+  },
+  "game_elements": [
+    {
+      "name": "element_name",
+      "type": "scoring_object",
+      "dimensions_mm": [0, 0, 0],
+      "weight_grams": 0,
+      "material": "foam/plastic/rubber",
+      "color_variants": [],
+      "quantity_on_field": 0,
+      "notes": ""
+    }
+  ],
+  "scoring_zones": [
+    {
+      "name": "zone_name",
+      "type": "goal/basket/line/zone",
+      "position": "field_center/alliance_side/shared",
+      "height_mm": 0,
+      "opening_mm": [0, 0],
+      "points_per_element": 0,
+      "autonomous_multiplier": 1,
+      "notes": ""
+    }
+  ],
+  "mechanisms_needed": {
+    "intake": {
+      "element_to_collect": "element_name",
+      "collection_method": "roller/claw/suction/scoop",
+      "notes": ""
+    },
+    "scorer": {
+      "delivery_method": "shoot/place/drop",
+      "target_distance_mm": 0,
+      "accuracy_requirement": "high/medium/low",
+      "notes": ""
+    },
+    "endgame": {
+      "task": "park/hang/climb/balance",
+      "points": 0,
+      "notes": ""
+    }
+  },
+  "design_axes": {
+    "drivetrain": ["mecanum", "differential", "swerve", "H-drive"],
+    "intake": [],
+    "indexer": [],
+    "scorer": [],
+    "aiming": [],
+    "endgame": []
+  },
+  "cycle_targets": {
+    "top_team_cycles": 0,
+    "average_team_cycles": 0,
+    "cycle_time_seconds": 0
+  }
+}
