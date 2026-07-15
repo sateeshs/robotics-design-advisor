@@ -1,7 +1,5 @@
 """Tests for autonomous coordination dataclasses."""
 
-import math
-
 from robotics_design_advisor.autonomous.models import (
     Action,
     AutonomousRoutine,

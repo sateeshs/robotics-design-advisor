@@ -21,7 +21,6 @@ def _calc_total_time(actions: tuple[Action, ...]) -> float:
     Parallel actions overlap: max(a, b) instead of a + b.
     """
     action_names = {a.name for a in actions}
-    parallel_targets = {a.parallel_with for a in actions if a.parallel_with}
     consumed: set[str] = set()
     total = 0.0
 
@@ -100,7 +99,7 @@ def validate_routine(routine: AutonomousRoutine) -> tuple[bool, tuple[str, ...]]
     action_names = {a.name for a in routine.actions}
 
     # Check time budget
-    period = _COMPETITION_PERIODS.get(routine.competition, 30.0)
+    period = _COMPETITION_PERIODS[routine.competition]
     if routine.total_time_s > period:
         warnings.append(
             f"Total time {routine.total_time_s:.1f}s exceeds "
