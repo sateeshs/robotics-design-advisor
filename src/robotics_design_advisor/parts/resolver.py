@@ -34,6 +34,9 @@ class SkuResolver:
         Example: ``{"1120": "channel", "5202": "motors"}``.
     extension : str
         File extension including dot (default ``.step``).
+    profiles_dir : str
+        Directory containing cached profile JSON files (optional).
+        If provided, resolve_with_profile() will load profiles from here.
     """
 
     def __init__(
@@ -41,10 +44,12 @@ class SkuResolver:
         base_path: str,
         category_map: dict[str, str],
         extension: str = ".step",
+        profiles_dir: str = "",
     ) -> None:
         self._base_path = base_path.rstrip("/\\")
         self._category_map = dict(category_map)
         self._extension = extension
+        self._profiles_dir = profiles_dir
 
         # Detect path separator from base_path
         self._sep = "\\" if "\\" in base_path else "/"
@@ -91,3 +96,37 @@ class SkuResolver:
         """Extract SKU prefix and look up category."""
         prefix = sku.split("-")[0] if "-" in sku else sku[:4]
         return self._category_map.get(prefix)
+
+    def resolve_with_profile(self, sku: str) -> tuple[str, dict | None]:
+        """Resolve a SKU to its file path and cached profile.
+
+        Returns
+        -------
+        tuple[str, dict | None]
+            (step_file_path, profile_dict) where profile is None
+            if no cached profile exists for this SKU.
+
+        Raises
+        ------
+        ValueError
+            If the SKU is empty or has invalid format.
+        SkuNotFoundError
+            If the SKU prefix is not in the category map.
+        """
+        path = self.resolve(sku)
+        profile = self._load_cached_profile(sku)
+        return (path, profile)
+
+    def _load_cached_profile(self, sku: str) -> dict | None:
+        """Load a cached profile JSON for a SKU, or return None."""
+        if not self._profiles_dir:
+            return None
+        import json
+        from pathlib import Path
+        profile_path = Path(self._profiles_dir) / f"{sku}.json"
+        if not profile_path.exists():
+            return None
+        try:
+            return json.loads(profile_path.read_text(encoding="utf-8"))
+        except (json.JSONDecodeError, OSError):
+            return None
