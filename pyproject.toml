@@ -18,6 +18,9 @@ dependencies = []
 server = [
     "mcp[cli]>=1.0",
 ]
+step = [
+    "cadquery>=2.4",
+]
 dev = [
     "pytest>=7.0",
     "pytest-cov>=4.0",
@@ -31,6 +34,9 @@ where = ["src"]
 [tool.pytest.ini_options]
 testpaths = ["tests"]
 addopts = "--tb=short"
+markers = [
+    "integration: tests that require CadQuery and real STEP files",
+]
 
 [tool.ruff]
 target-version = "py310"
