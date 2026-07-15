@@ -166,5 +166,6 @@ def select_motor(
             best_score = score
             best_match = match
 
-    assert best_match is not None  # guaranteed by non-empty motors check
+    if best_match is None:
+        raise RuntimeError("Internal error: motor loop produced no result")
     return best_match

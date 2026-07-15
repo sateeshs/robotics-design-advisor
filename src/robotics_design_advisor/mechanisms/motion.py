@@ -95,6 +95,9 @@ def calc_motion_profile(
     accel_ticks = calc_encoder_ticks(accel_distance, wheel_diameter_mm, encoder_ticks_per_rev, gear_ratio)
     decel_ticks = calc_encoder_ticks(decel_distance, wheel_diameter_mm, encoder_ticks_per_rev, gear_ratio)
     cruise_ticks = total_ticks - accel_ticks - decel_ticks
+    if cruise_ticks < 0:
+        decel_ticks = max(0, decel_ticks + cruise_ticks)
+        cruise_ticks = 0
 
     # Cruise velocity in ticks per second
     circumference = math.pi * wheel_diameter_mm

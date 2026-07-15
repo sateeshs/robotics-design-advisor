@@ -127,3 +127,15 @@ class TestCalcMotionProfile:
                 encoder_ticks_per_rev=537.7,
                 gear_ratio=1.0,
             )
+
+    def test_cruise_ticks_never_negative(self):
+        """Short distances must not produce negative cruise ticks."""
+        result = calc_motion_profile(
+            distance_mm=50.0,
+            max_velocity_mm_s=500.0,
+            wheel_diameter_mm=96.0,
+            encoder_ticks_per_rev=537.7,
+            gear_ratio=1.0,
+        )
+        assert result.cruise_ticks >= 0
+        assert result.accel_ticks + result.cruise_ticks + result.decel_ticks == result.total_ticks
