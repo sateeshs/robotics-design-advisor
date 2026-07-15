@@ -105,3 +105,13 @@ class TestAnalyzeGame:
         for s in analysis.strategies:
             # Auto points should be >= 0 since scoring_actions have auto multipliers
             assert s.expected_auto_points >= 0
+
+    def test_empty_scoring_actions_raises(self):
+        data = {
+            "competition": "FTC",
+            "game_name": "Empty",
+            "game_elements": [],
+            "field": {},
+        }
+        with pytest.raises(ValueError, match="scoring strategies"):
+            analyze_game(data, "intermediate")

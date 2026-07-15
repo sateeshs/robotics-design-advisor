@@ -118,6 +118,7 @@ def synthesize_design(
     analysis = analyze_game(season_data, team_level)
 
     # Step 3: Select archetype
+    _no_archetype_match = False
     if archetype_id is not None:
         archetype = get_archetype_by_id(archetype_id)
         if archetype is None:
@@ -137,6 +138,7 @@ def synthesize_design(
             archetype_name = "Custom"
             motor_budget = 8
             scorer_type = "elevator_placer"
+            _no_archetype_match = True
 
     # Step 4: Determine mechanisms from strategy
     # Use the recommended strategy, but for beginner/intermediate levels
@@ -197,6 +199,10 @@ def synthesize_design(
 
     # Step 7: Collect warnings
     warnings: list[str] = list(bom.warnings)
+    if _no_archetype_match:
+        warnings.append(
+            "No matching archetype found for this season — using Custom defaults"
+        )
 
     return DesignSynthesis(
         season=analysis.season,

@@ -212,6 +212,12 @@ def analyze_game(
 
     strategies = _build_strategies(season_data)
 
+    if not strategies:
+        raise ValueError(
+            "No scoring strategies could be generated — "
+            "season data may be missing 'scoring_actions'"
+        )
+
     # Recommend strategy matching team level
     level_order = _DIFFICULTY_ORDER[team_level]
     recommended = ""

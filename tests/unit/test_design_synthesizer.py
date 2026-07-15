@@ -110,3 +110,16 @@ class TestSynthesizeDesign:
                 season_file="nonexistent.json",
                 team_level="intermediate",
             )
+
+    def test_fallback_when_no_archetypes_match(self, monkeypatch):
+        from robotics_design_advisor.engineering import design_synthesizer
+
+        monkeypatch.setattr(
+            design_synthesizer, "recommend_for_season", lambda *a, **kw: []
+        )
+        result = synthesize_design(
+            season_file="ftc-2024-into-the-deep.json",
+            team_level="intermediate",
+        )
+        assert result.archetype_name == "Custom"
+        assert any("no matching archetype" in w.lower() for w in result.warnings)
