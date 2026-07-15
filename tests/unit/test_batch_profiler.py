@@ -1,7 +1,6 @@
 """Tests for batch STEP profiling and cache management."""
 
 import json
-import os
 from pathlib import Path
 
 import pytest

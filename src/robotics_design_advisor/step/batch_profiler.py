@@ -13,7 +13,7 @@ from dataclasses import dataclass
 from pathlib import Path
 from typing import Any
 
-from .profile_builder import build_profile, write_profile
+from .profile_builder import build_profile
 
 logger = logging.getLogger(__name__)
 
