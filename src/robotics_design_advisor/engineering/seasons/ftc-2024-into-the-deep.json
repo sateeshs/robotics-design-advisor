@@ -1,0 +1,173 @@
+{
+  "competition": "FTC",
+  "season": "2024-2025",
+  "game_name": "INTO THE DEEP",
+  "field": {
+    "dimensions_mm": [3658, 3658],
+    "notes": "Standard FTC 12'×12' field with submersible and baskets"
+  },
+  "game_elements": [
+    {
+      "name": "sample",
+      "type": "cube",
+      "dimensions_mm": [38, 38, 38],
+      "weight_grams": 28,
+      "material": "foam",
+      "color_variants": ["yellow", "blue", "red"],
+      "quantity_on_field": 30,
+      "friction_coefficient": 0.7,
+      "notes": "~1.5 inch foam cubes"
+    },
+    {
+      "name": "specimen",
+      "type": "clip",
+      "dimensions_mm": [50, 30, 80],
+      "weight_grams": 35,
+      "material": "plastic",
+      "color_variants": [],
+      "quantity_on_field": 6,
+      "grip_method": "hook_and_clip",
+      "notes": "Plastic clip, requires hook mechanism"
+    }
+  ],
+  "scoring_zones": [
+    {
+      "name": "net_zone",
+      "type": "zone",
+      "position": "alliance_side",
+      "height_mm": 0,
+      "opening_mm": [600, 600],
+      "points_per_element": 2,
+      "autonomous_multiplier": 2,
+      "notes": "Drop samples into net zone on floor"
+    },
+    {
+      "name": "low_basket",
+      "type": "basket",
+      "position": "alliance_corner",
+      "height_mm": 660,
+      "opening_mm": [254, 254],
+      "points_per_element": 4,
+      "autonomous_multiplier": 2,
+      "notes": "Low basket on alliance corner"
+    },
+    {
+      "name": "high_basket",
+      "type": "basket",
+      "position": "alliance_corner",
+      "height_mm": 1060,
+      "opening_mm": [254, 254],
+      "points_per_element": 8,
+      "autonomous_multiplier": 2,
+      "notes": "High basket on alliance corner, requires elevator"
+    },
+    {
+      "name": "low_chamber",
+      "type": "chamber",
+      "position": "field_center",
+      "height_mm": 330,
+      "opening_mm": [25, 610],
+      "points_per_element": 6,
+      "autonomous_multiplier": 2,
+      "notes": "Low specimen chamber on submersible"
+    },
+    {
+      "name": "high_chamber",
+      "type": "chamber",
+      "position": "field_center",
+      "height_mm": 660,
+      "opening_mm": [25, 610],
+      "points_per_element": 10,
+      "autonomous_multiplier": 2,
+      "notes": "High specimen chamber on submersible"
+    }
+  ],
+  "scoring_actions": [
+    {
+      "name": "net_zone_sample",
+      "points": 2,
+      "mechanism": "grabber",
+      "target_location": {"x": 600, "y": 600, "z": 0},
+      "difficulty": "easy",
+      "cycle_time_s": 8
+    },
+    {
+      "name": "low_basket_sample",
+      "points": 4,
+      "mechanism": "lift+grabber",
+      "target_location": {"x": 300, "y": 300, "z": 660},
+      "difficulty": "medium",
+      "cycle_time_s": 12
+    },
+    {
+      "name": "high_basket_sample",
+      "points": 8,
+      "mechanism": "lift+grabber",
+      "target_location": {"x": 300, "y": 300, "z": 1060},
+      "difficulty": "hard",
+      "cycle_time_s": 15
+    },
+    {
+      "name": "low_chamber_specimen",
+      "points": 6,
+      "mechanism": "arm+grabber",
+      "target_location": {"x": 1829, "y": 0, "z": 330},
+      "difficulty": "medium",
+      "cycle_time_s": 10
+    },
+    {
+      "name": "high_chamber_specimen",
+      "points": 10,
+      "mechanism": "arm+grabber",
+      "target_location": {"x": 1829, "y": 0, "z": 660},
+      "difficulty": "hard",
+      "cycle_time_s": 12
+    }
+  ],
+  "endgame": [
+    {"name": "level_1_ascent", "points": 3, "mechanism": "passive"},
+    {"name": "level_2_ascent", "points": 15, "mechanism": "active_hang"},
+    {"name": "level_3_ascent", "points": 30, "mechanism": "active_hang+pull"}
+  ],
+  "constraints": {
+    "auto_period_s": 30,
+    "teleop_period_s": 120,
+    "endgame_period_s": 30,
+    "max_pieces_preloaded": 1,
+    "max_motors": 8,
+    "max_servos": 12,
+    "size_limit_mm": [457, 457, 457],
+    "weight_limit_g": 19050
+  },
+  "mechanisms_needed": {
+    "intake": {
+      "element_to_collect": "sample",
+      "collection_method": "claw/roller",
+      "notes": "Must handle 38mm foam cubes and 80mm specimens"
+    },
+    "scorer": {
+      "delivery_method": "place",
+      "target_distance_mm": 0,
+      "accuracy_requirement": "high",
+      "notes": "Direct placement into baskets and chambers"
+    },
+    "endgame": {
+      "task": "hang",
+      "points": 30,
+      "notes": "Level 3 ascent for maximum endgame points"
+    }
+  },
+  "design_axes": {
+    "drivetrain": ["mecanum", "differential"],
+    "intake": ["claw_gripper", "front_roller"],
+    "indexer": ["direct_feed"],
+    "scorer": ["elevator_placer"],
+    "aiming": ["pivot_hood", "whole_robot_aim"],
+    "endgame": ["simple_park", "fast_park"]
+  },
+  "cycle_targets": {
+    "top_team_cycles": 12,
+    "average_team_cycles": 6,
+    "cycle_time_seconds": 10
+  }
+}
