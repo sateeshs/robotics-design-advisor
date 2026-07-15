@@ -227,3 +227,65 @@ class ElectronicsLayout:
     cg_shift_mm: tuple[float, float, float]
     port_allocation: PortAllocation
     compliance_issues: tuple[str, ...] = ()
+
+
+# --- Phase 4C: Season-Aware Design Advisor models ---
+
+
+@dataclass(frozen=True)
+class ScoringStrategy:
+    """A prioritized scoring strategy for a season."""
+    name: str
+    expected_auto_points: int
+    expected_teleop_points: int
+    expected_endgame_points: int
+    total_expected_points: int
+    required_mechanisms: tuple[str, ...]
+    difficulty: str  # "beginner" | "intermediate" | "advanced"
+    rationale: str
+
+
+@dataclass(frozen=True)
+class GameAnalysis:
+    """Analyzed game with prioritized strategies."""
+    season: str
+    competition: str  # "FTC" | "FRC"
+    strategies: tuple[ScoringStrategy, ...]
+    recommended_strategy: str  # name of best strategy
+    game_pieces: tuple[dict, ...]
+    field_config: dict
+
+
+@dataclass(frozen=True)
+class BOMItem:
+    """A single item in a bill of materials."""
+    sku: str
+    name: str
+    quantity: int
+    unit_price_usd: float
+    category: str  # "structure" | "motion" | "electronics" | "hardware"
+    subsystem: str  # "drivetrain" | "arm" | "grabber" | "electronics"
+    notes: str
+
+
+@dataclass(frozen=True)
+class BillOfMaterials:
+    """Complete bill of materials with cost and weight totals."""
+    items: tuple[BOMItem, ...]
+    total_cost_usd: float
+    total_weight_g: float
+    warnings: tuple[str, ...]
+    subsystem_breakdown: dict  # subsystem -> (cost, weight, part_count)
+
+
+@dataclass(frozen=True)
+class DesignSynthesis:
+    """Complete design synthesis output — the final deliverable."""
+    season: str
+    competition: str
+    strategy: ScoringStrategy
+    archetype_name: str
+    bom: BillOfMaterials
+    mechanism_notes: tuple[str, ...]
+    autonomous_notes: tuple[str, ...]
+    warnings: tuple[str, ...]
