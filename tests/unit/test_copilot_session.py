@@ -280,6 +280,19 @@ class TestSkipSubsystem:
         assert len(new_state.approved_subsystems) == 1
         assert new_state.approved_subsystems[0].approved is False
 
+    def test_raises_when_all_phases_done(self):
+        synthesis = _make_mock_synthesis()
+        asm = AssemblyDoc(name="robot", save_path="/tmp/robot.SLDASM", com_ref=MagicMock())
+        state = CopilotState(
+            current_phase=5,
+            approved_subsystems=(),
+            assembly_ref=asm,
+            design_synthesis=synthesis,
+            session=_make_mock_session(),
+        )
+        with pytest.raises(ValueError, match="complete"):
+            skip_subsystem(state)
+
 
 class TestFinishSession:
     def test_returns_design_summary(self):

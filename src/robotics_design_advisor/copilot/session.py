@@ -19,7 +19,6 @@ from ..engineering.design_synthesizer import synthesize_design
 from ..engineering.models import BOMItem, DesignSynthesis
 from ..solidworks.assembly import (
     AssemblyDoc,
-    ComponentRef,
     create_assembly,
     insert_component,
     save_assembly,
@@ -151,7 +150,7 @@ def approve_subsystem(
 ) -> tuple[CopilotState, SubsystemResult]:
     """Approve a proposal and insert parts into SolidWorks.
 
-    This is the only function with COM side effects.
+    This function inserts components via COM.
     """
     component_names: list[str] = []
 
@@ -191,6 +190,9 @@ def approve_subsystem(
 
 def skip_subsystem(state: CopilotState) -> CopilotState:
     """Skip the current subsystem without inserting anything."""
+    if state.current_phase >= len(state.target_subsystems):
+        raise ValueError("All subsystems complete — cannot skip")
+
     subsystem = state.target_subsystems[state.current_phase]
     result = SubsystemResult(
         subsystem=subsystem,
