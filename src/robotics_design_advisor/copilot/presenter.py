@@ -10,7 +10,6 @@ from .models import (
     CopilotState,
     DesignSummary,
     SubsystemProposal,
-    SUBSYSTEM_ORDER,
 )
 
 
@@ -26,7 +25,6 @@ def format_proposal(proposal: SubsystemProposal) -> str:
     lines.append("")
     lines.append("Parts:")
     for part in proposal.parts:
-        cost = part.quantity * _estimate_unit_price(part.sku)
         lines.append(
             f"  - {part.name} (SKU: {part.sku}) x{part.quantity}"
         )
