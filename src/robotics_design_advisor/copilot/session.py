@@ -154,12 +154,16 @@ def approve_subsystem(
     """
     component_names: list[str] = []
 
+    # Calculate total expanded parts for positioning
+    total_expanded = sum(p.quantity for p in proposal.parts)
+    part_idx = 0
+
     for placement in proposal.parts:
-        for i in range(placement.quantity):
+        for _copy in range(placement.quantity):
             position = calculate_position(
                 proposal.subsystem,
-                min(i, max(len(proposal.parts) - 1, 0)),
-                max(len(proposal.parts), 1),
+                part_idx,
+                max(total_expanded, 1),
             )
             comp = insert_component(
                 state.session,
@@ -168,6 +172,7 @@ def approve_subsystem(
                 position,
             )
             component_names.append(comp.name)
+            part_idx += 1
 
     result = SubsystemResult(
         subsystem=proposal.subsystem,

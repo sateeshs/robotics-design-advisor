@@ -106,6 +106,22 @@ class TestFormatProgress:
         output = format_progress(state)
         assert "complete" in output.lower() or "done" in output.lower()
 
+    def test_skipped_shows_as_skipped(self):
+        results = (
+            SubsystemResult(subsystem="drivetrain", approved=True, component_names=(), notes=""),
+            SubsystemResult(subsystem="intake", approved=False, component_names=(), notes="skipped"),
+        )
+        state = CopilotState(
+            current_phase=2,
+            approved_subsystems=results,
+            assembly_ref=MagicMock(),
+            design_synthesis=MagicMock(),
+            session=MagicMock(),
+        )
+        output = format_progress(state)
+        assert "drivetrain [done]" in output
+        assert "intake [skipped]" in output
+
 
 class TestFormatSummary:
     def test_includes_totals(self):

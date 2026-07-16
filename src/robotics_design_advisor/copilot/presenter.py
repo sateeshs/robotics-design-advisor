@@ -37,11 +37,14 @@ def format_proposal(proposal: SubsystemProposal) -> str:
 def format_progress(state: CopilotState) -> str:
     """Show build progress across target subsystems."""
     parts: list[str] = []
-    approved_names = {r.subsystem for r in state.approved_subsystems}
+    approved_names = {r.subsystem for r in state.approved_subsystems if r.approved}
+    skipped_names = {r.subsystem for r in state.approved_subsystems if not r.approved}
 
     for i, subsystem in enumerate(state.target_subsystems):
         if subsystem in approved_names:
             parts.append(f"{subsystem} [done]")
+        elif subsystem in skipped_names:
+            parts.append(f"{subsystem} [skipped]")
         elif i == state.current_phase:
             parts.append(f"{subsystem} [current]")
         else:
@@ -80,14 +83,3 @@ def format_summary(summary: DesignSummary) -> str:
     return "\n".join(lines)
 
 
-def _estimate_unit_price(sku: str) -> float:
-    """Rough price estimate from SKU prefix. Internal helper."""
-    prefix = sku.split("-")[0] if "-" in sku else sku[:4]
-    # Very rough mapping — real prices come from BOM
-    estimates: dict[str, float] = {
-        "5202": 19.99,
-        "2000": 24.99,
-        "3209": 299.99,
-        "REV": 249.99,
-    }
-    return estimates.get(prefix, 10.0)
